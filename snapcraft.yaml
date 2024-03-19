@@ -44,6 +44,11 @@ parts:
       - lsb-release
       - dpkg-dev
       - make
+  panther-dtb:
+    plugin: dump
+    source: ./overlay
+    organize:
+      panther_1_22_overlay.dtbo: boot-assets/panther_overlay.dtbo
 
 slots:
   bcm-gpio-0:

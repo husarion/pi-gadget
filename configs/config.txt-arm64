@@ -1,3 +1,9 @@
 # Config settings specific to arm64
 arm_64bit=1
 dtoverlay=dwc2
+
+# Change UART clock to allow for 6 MBps transmission
+# The value is double what is needed for better precision.
+init_uart_clock=128000000
+
+dtoverlay=panther_overlay
