@@ -111,6 +111,11 @@ parts:
       - try:
           - gcc-aarch64-linux-gnu:amd64
           - libc6-dev-arm64-cross:amd64
+  panther-overlay:
+    plugin: dump      
+    source: ./overlay
+    organize:
+      panther_overlay.dtbo: boot-assets/overlays/panther_overlay.dtbo
 
 slots:
   bcm-gpio-0:
@@ -218,6 +223,9 @@ slots:
   i2c-6:
     interface: i2c
     path: /dev/i2c-6
+  # can-serial:
+  #   interface: serial-port
+  #   path: /dev/ttyACM0
   bt-serial:
     interface: serial-port
     path: /dev/ttyAMA0
@@ -301,3 +309,11 @@ slots:
     interface: pwm
     chip-number: 0
     channel: 1
+  gpiochip0:
+    interface: custom-device
+    custom-device: gpiochip
+    devices:
+      - /dev/gpiochip0
+    files:
+      read:
+        - /sys/devices/platform/soc/*.gpio/gpiochip0/dev
